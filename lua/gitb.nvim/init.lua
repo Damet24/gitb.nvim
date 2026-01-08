@@ -9,23 +9,6 @@ local blame_ns = api.nvim_create_namespace("git_blame_virtual_text")
 -- Cache por línea para no llamar a git innecesariamente
 local blame_cache = {}
 
--- Defaults
-M.defaults = {
-  enabled = false,
-
-  highlights = {
-    author = { fg = "#A9B1D6", bold = true },
-    date = { fg = "#7AA2F7", italic = true },
-    msg = { fg = "#C0CAF5" },
-  },
-
-  popup = {
-    max_width = 80,
-    max_height = 15,
-    border = "rounded",
-  },
-}
-
 -- Helpers
 local function set_highlight(name, opts)
   vim.api.nvim_set_hl(0, name, {
@@ -35,10 +18,33 @@ local function set_highlight(name, opts)
   })
 end
 
+local function fg_of_group(group)
+  local ok, hl = pcall(vim.api.nvim_get_hl, 0, { name = group })
+  if ok and hl.fg then
+    return string.format("#%06x", hl.fg)
+  end
+  return nil
+end
 local function cache_key(file, line)
   return file .. ":" .. line
 end
 
+-- Defaults
+M.defaults = {
+  enabled = false,
+
+  highlights = {
+    author = { fg = fg_of_group("Comment"), bold = true },
+    date = { fg = fg_of_group("Identifier"), italic = true },
+    msg = { fg = fg_of_group("Normal") },
+  },
+
+  popup = {
+    max_width = 80,
+    max_height = 15,
+    border = "rounded",
+  },
+}
 -- Función principal para mostrar blame virtual text
 function M.blameVirtText()
   if not M.opts.enabled then
