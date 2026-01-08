@@ -13,9 +13,9 @@ Con tu gestor de plugins favorito:
 
 ```lua
 {
-  "tu_usuario/git_blame_virtual",
+  "Damet24/gitb.nvim",
   config = function()
-    require("git_blame_virtual").setup()
+    require("gitb.nvim").setup()
   end
 }
 ```
@@ -24,9 +24,9 @@ Con tu gestor de plugins favorito:
 
 ```lua
 use {
-  "tu_usuario/git_blame_virtual",
+  "Damet24/gitb.nvim",
   config = function()
-    require("git_blame_virtual").setup()
+    require("gitb.nvim").setup()
   end
 }
 ```
@@ -44,7 +44,7 @@ use {
 ### Mostrar cache en ventana flotante
 
 ```lua
-require("git_blame_virtual").showCachePopup()
+require("gitb.nvim").showCachePopup()
 ```
 
 ---
@@ -54,7 +54,7 @@ require("git_blame_virtual").showCachePopup()
 Todas las opciones se pasan a través de un **único objeto `setup()`**:
 
 ```lua
-require("git_blame_virtual").setup({
+require("gitb.nvim").setup({
   enabled = true, -- iniciar activado
 
   highlights = {
@@ -89,7 +89,7 @@ require("git_blame_virtual").setup({
 ## Ejemplo completo
 
 ```lua
-require("git_blame_virtual").setup({
+require("gitb.nvim").setup({
   enabled = true,
 
   highlights = {
