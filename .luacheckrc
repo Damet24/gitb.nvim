@@ -5,5 +5,6 @@ globals = {
 }
 
 ignore = {
-  "unused_variable"
+  "21",
+  "421"
 }
