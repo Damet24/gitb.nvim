@@ -37,7 +37,7 @@ Con tu gestor de plugins favorito:
 {
   "Damet24/gitb.nvim",
   config = function()
-    require("gitb.nvim").setup()
+    require("gitb_nvim").setup()
   end
 }
 ```
@@ -48,7 +48,7 @@ Con tu gestor de plugins favorito:
 use {
   "Damet24/gitb.nvim",
   config = function()
-    require("gitb.nvim").setup()
+    require("gitb_nvim").setup()
   end
 }
 ```
@@ -66,7 +66,7 @@ use {
 ### Mostrar cache en ventana flotante
 
 ```lua
-require("gitb.nvim").showCachePopup()
+require("gitb_nvim").showCachePopup()
 ```
 
 ---
@@ -76,7 +76,7 @@ require("gitb.nvim").showCachePopup()
 Todas las opciones se pasan a través de un **único objeto `setup()`**:
 
 ```lua
-require("gitb.nvim").setup({
+require("gitb_nvim").setup({
   enabled = true, -- iniciar activado
 
   highlights = {
@@ -95,23 +95,23 @@ require("gitb.nvim").setup({
 
 ### Opciones de configuración
 
-| Opción | Tipo | Default | Descripción |
-|--------|------|---------|-------------|
-| `enabled` | boolean | `false` | Iniciar el plugin activado |
-| `highlights.author` | table | `{ fg = colors.Comment, bold = true }` | Color y estilo del autor |
-| `highlights.date` | table | `{ fg = colors.Identifier, italic = true }` | Color y estilo de la fecha |
-| `highlights.msg` | table | `{ fg = colors.Normal }` | Color del mensaje |
-| `popup.max_width` | number | `80` | Ancho máximo del popup |
-| `popup.max_height` | number | `15` | Alto máximo del popup |
-| `popup.border` | string | `"rounded"` | Estilo del borde (`"rounded"`, `"single"`, `"double"`, `"shadow"`, etc.) |
+| Opción              | Tipo    | Default                                     | Descripción                                                              |
+| ------------------- | ------- | ------------------------------------------- | ------------------------------------------------------------------------ |
+| `enabled`           | boolean | `false`                                     | Iniciar el plugin activado                                               |
+| `highlights.author` | table   | `{ fg = colors.Comment, bold = true }`      | Color y estilo del autor                                                 |
+| `highlights.date`   | table   | `{ fg = colors.Identifier, italic = true }` | Color y estilo de la fecha                                               |
+| `highlights.msg`    | table   | `{ fg = colors.Normal }`                    | Color del mensaje                                                        |
+| `popup.max_width`   | number  | `80`                                        | Ancho máximo del popup                                                   |
+| `popup.max_height`  | number  | `15`                                        | Alto máximo del popup                                                    |
+| `popup.border`      | string  | `"rounded"`                                 | Estilo del borde (`"rounded"`, `"single"`, `"double"`, `"shadow"`, etc.) |
 
 ### Highlights personalizados
 
 Puedes personalizar los highlights directamente: >
 
-  vim.api.nvim_set_hl(0, "GitBlameAuthor", { fg = "#FFA500", bold = true })
-  vim.api.nvim_set_hl(0, "GitBlameDate", { fg = "#00FFFF", italic = true })
-  vim.api.nvim_set_hl(0, "GitBlameMsg", { fg = "#FFFFFF" })
+vim.api.nvim_set_hl(0, "GitBlameAuthor", { fg = "#FFA500", bold = true })
+vim.api.nvim_set_hl(0, "GitBlameDate", { fg = "#00FFFF", italic = true })
+vim.api.nvim_set_hl(0, "GitBlameMsg", { fg = "#FFFFFF" })
 <
 
 ---
@@ -119,7 +119,7 @@ Puedes personalizar los highlights directamente: >
 ## Ejemplo completo
 
 ```lua
-require("gitb.nvim").setup({
+require("gitb_nvim").setup({
   enabled = true,
 
   highlights = {

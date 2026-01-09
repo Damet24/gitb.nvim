@@ -179,12 +179,12 @@ EXAMPLES                                                   *gitb-examples*
 
 Minimal configuration: >
 
-  require("gitb.nvim").setup({ enabled = true })
+  require("gitb_nvim").setup({ enabled = true })
 <
 
 Custom colors: >
 
-  require("gitb.nvim").setup({
+  require("gitb_nvim").setup({
     enabled = true,
     highlights = {
       author = { fg = "#FFA500", bold = true },
@@ -196,7 +196,7 @@ Custom colors: >
 
 With keymap: >
 
-  require("gitb.nvim").setup({ enabled = true })
+  require("gitb_nvim").setup({ enabled = true })
   vim.keymap.set('n', '<leader>gb', ':GitBlameToggle<CR>', { desc = 'Toggle git blame' })
 <
 
