@@ -107,6 +107,10 @@ end
 
 -- Mostrar cache en ventana flotante
 function M.showCachePopup()
+	if not M.opts then
+		M.setup({})
+	end
+
 	local buf = api.nvim_create_buf(false, true)
 
 	local lines = {}
@@ -168,6 +172,10 @@ end
 
 -- Toggle
 function M.toggleBlame()
+	if not M.opts then
+		M.setup({})
+	end
+
 	M.opts.enabled = not M.opts.enabled
 
 	if not M.opts.enabled then
