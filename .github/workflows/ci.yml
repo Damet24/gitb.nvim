@@ -17,15 +17,11 @@ jobs:
         with:
           luaVersion: "5.1"
 
+      - name: Install LuaRocks
+        uses: leafo/gh-actions-luarocks@v10
+
       - name: Install Luacheck
-        run: |
-          wget https://github.com/lunarmodules/luarocks/archive/refs/tags/v3.11.0.tar.gz
-          tar -xzvf v3.11.0.tar.gz
-          cd luarocks-3.11.0
-          ./configure --lua-version=5.1
-          make
-          sudo make install
-          luarocks install luacheck
+        run: luarocks install luacheck
 
       - name: Run Luacheck
         run: luacheck lua/
@@ -36,19 +32,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install LuaLS
-        uses: JohnnyMorganz/setup-luau-lsp@v2
+      - name: Typecheck with LuaLS
+        uses: mrcjkb/lua-typecheck-action@v1
         with:
-          version: "latest"
-
-      - name: Typecheck
-        run: |
-          luau-lsp analyze \
-            --definitions=lua \
-            --ignore=lua/gitb_nvim/defaults.lua \
-            --ignore=lua/gitb_nvim/utils.lua \
-            --ignore=lua/gitb_nvim/init.lua
-        continue-on-error: true
+          dirs: lua
+          continue-on-error: true
 
   neovim:
     name: Neovim ${{ matrix.neovim }}
