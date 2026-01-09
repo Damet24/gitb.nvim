@@ -61,9 +61,13 @@ jobs:
 
       - name: Install Neovim ${{ matrix.neovim }}
         run: |
-          wget https://github.com/neovim/neovim/releases/download/${{ matrix.neovim }}/nvim.appimage
-          chmod +x nvim.appimage
-          sudo mv nvim.appimage /usr/local/bin/nvim
+          if [ "${{ matrix.neovim }}" = "stable" ]; then
+            wget https://github.com/neovim/neovim-releases/releases/download/v0.11.5/nvim-linux-x86_64.appimage
+          else
+            wget https://github.com/neovim/neovim/releases/download/nightly/nvim-linux-x86_64.appimage
+          fi
+          chmod +x nvim-linux-x86_64.appimage
+          sudo mv nvim-linux-x86_64.appimage /usr/local/bin/nvim
 
       - name: Check syntax
         run: nvim --headless -c "lua require('gitb_nvim')" -c "quitall!"
@@ -82,9 +86,9 @@ jobs:
 
       - name: Install Neovim
         run: |
-          wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
-          chmod +x nvim.appimage
-          sudo mv nvim.appimage /usr/local/bin/nvim
+          wget https://github.com/neovim/neovim-releases/releases/download/v0.11.5/nvim-linux-x86_64.appimage
+          chmod +x nvim-linux-x86_64.appimage
+          sudo mv nvim-linux-x86_64.appimage /usr/local/bin/nvim
 
       - name: Generate help tags
         run: nvim --headless -c "helptags doc/" -c "quitall!"
