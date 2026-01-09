@@ -5,9 +5,13 @@
   ],
   "workspace.checkThirdParty": false,
   "runtime.version": "LuaJIT",
-  "diagnostics.globals": ["vim"],
+  "diagnostics.globals": ["vim",
+        "std",
+        "globals",
+        "ignore"],
   "diagnostics.disable": [
     "redundant-parameter",
-    "duplicate-set-field"
+    "duplicate-set-field",
+        "unused-local"
   ]
 }
