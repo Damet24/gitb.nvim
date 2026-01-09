@@ -1,0 +1,26 @@
+# Lua
+*.luac
+.luacov.*
+
+# Neovim
+doc/tags
+doc/*.tags
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# Logs
+*.log
+
+# Temporary files
+tmp/
+temp/

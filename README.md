@@ -1,7 +1,29 @@
 # GitBlame Virtual Text for Neovim
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Lua](https://img.shields.io/badge/Made%20with%20Lua-blue.svg)](https://lua.org)
+[![Neovim 0.9+](https://img.shields.io/badge/Neovim-0.9%2B-green.svg)](https://neovim.io)
+
 Muestra información de **Git blame** como virtual text en Neovim, línea por línea.
 Permite personalizar colores, habilitar/deshabilitar, y mostrar la cache en una ventana flotante.
+
+![screenshot](https://github.com/Damet24/gitb.nvim/raw/master/screenshot.png)
+
+## Features
+
+- 📊 Visualización de Git blame en la línea actual usando **virtual text**
+- 💾 Cache local por línea para minimizar llamadas a Git
+- 🪟 Popup flotante con toda la cache de blame
+- 🎨 Colores y estilos configurables
+- 🔄 Auto-aplica highlights al cambiar colorscheme
+- ⚡ Toggle fácil con comando `:GitBlameToggle`
+- ⏱️ Lazy loading para startup rápido
+- 🩺 Health check con `:checkhealth gitb`
+
+## Requirements
+
+- Neovim >= 0.9.0
+- Git instalado y disponible en PATH
 
 ---
 
@@ -71,18 +93,26 @@ require("gitb.nvim").setup({
 })
 ```
 
-#### Explicación de opciones
+### Opciones de configuración
 
-- `enabled` – boolean, si iniciar el plugin activado o no.
-- `highlights` – colores y estilos para cada parte del blame:
-  - `author` – color y opcional `bold`
-  - `date` – color y opcional `italic`
-  - `msg` – color del mensaje
+| Opción | Tipo | Default | Descripción |
+|--------|------|---------|-------------|
+| `enabled` | boolean | `false` | Iniciar el plugin activado |
+| `highlights.author` | table | `{ fg = colors.Comment, bold = true }` | Color y estilo del autor |
+| `highlights.date` | table | `{ fg = colors.Identifier, italic = true }` | Color y estilo de la fecha |
+| `highlights.msg` | table | `{ fg = colors.Normal }` | Color del mensaje |
+| `popup.max_width` | number | `80` | Ancho máximo del popup |
+| `popup.max_height` | number | `15` | Alto máximo del popup |
+| `popup.border` | string | `"rounded"` | Estilo del borde (`"rounded"`, `"single"`, `"double"`, `"shadow"`, etc.) |
 
-- `popup` – configuración de la ventana flotante que muestra la cache:
-  - `max_width` – ancho máximo
-  - `max_height` – alto máximo
-  - `border` – estilo de borde (`"rounded"`, `"single"`, `"double"`, etc.)
+### Highlights personalizados
+
+Puedes personalizar los highlights directamente: >
+
+  vim.api.nvim_set_hl(0, "GitBlameAuthor", { fg = "#FFA500", bold = true })
+  vim.api.nvim_set_hl(0, "GitBlameDate", { fg = "#00FFFF", italic = true })
+  vim.api.nvim_set_hl(0, "GitBlameMsg", { fg = "#FFFFFF" })
+<
 
 ---
 

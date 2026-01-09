@@ -1,0 +1,215 @@
+*gitb.txt*  Git Blame Virtual Text for Neovim
+
+Author:  Damet
+License: MIT License
+Repository: https://github.com/Damet24/gitb.nvim
+
+==============================================================================
+INTRODUCTION                                    *gitb* *gitb-nvim*
+
+Gitb.nvim displays git blame information as virtual text in Neovim, showing
+author, date, and commit message for each line as you navigate through your
+code.
+
+Features:
+  - Line-by-line git blame information
+  - Per-line caching to minimize git calls
+  - Virtual text display at end of line
+  - Customizable colors and styles
+  - Floating popup for cache inspection
+  - Toggle command for easy enable/disable
+  - Automatic highlight refresh on colorscheme change
+
+==============================================================================
+REQUIREMENTS                                          *gitb-requirements*
+
+- Neovim >= 0.9.0
+- Git (installed and available in PATH)
+- Plugin manager (lazy.nvim, packer.nvim, etc.)
+
+==============================================================================
+INSTALLATION                                        *gitb-installation*
+
+Using lazy.nvim: >
+
+  {
+    "Damet24/gitb.nvim",
+    config = function()
+      require("gitb.nvim").setup()
+    end
+  }
+<
+
+Using packer.nvim: >
+
+  use {
+    "Damet24/gitb.nvim",
+    config = function()
+      require("gitb.nvim").setup()
+    end
+  }
+<
+
+==============================================================================
+COMMANDS                                                 *gitb-commands*
+
+*:GitBlameToggle*                                       *gitb-GitBlameToggle*
+    Toggle git blame virtual text on/off.
+
+*:GitBlameShowCache*                                   *gitb-GitBlameShowCache*
+    Display the git blame cache in a floating window.
+
+*:checkhealth gitb*                                      *gitb-checkhealth*
+    Check if git is installed and plugin is properly configured.
+
+==============================================================================
+CONFIGURATION                                         *gitb-configuration*
+
+Default Configuration:                                  *gitb-default-config* >
+
+  require("gitb.nvim").setup({
+    enabled = true,
+
+    highlights = {
+      author = { fg = "#FF0000", bold = true },
+      date   = { fg = "#00FF00", italic = true },
+      msg    = { fg = "#0000FF" },
+    },
+
+    popup = {
+      max_width  = 100,
+      max_height = 20,
+      border     = "double",
+    },
+  })
+<
+
+Configuration Options:                                  *gitb-config-options*
+
+enabled                                           *gitb-config-enabled*
+    Type: boolean
+    Default: false
+    Whether to start the plugin enabled or not.
+
+highlights                                     *gitb-config-highlights*
+    Type: table
+    Default: (see above)
+    Customize colors and styles for each part of the blame.
+
+    author                                        *gitb-config-author*
+        Type: table with keys `fg`, `bold` (optional)
+        Author name color and bold styling.
+
+    date                                            *gitb-config-date*
+        Type: table with keys `fg`, `italic` (optional)
+        Date color and italic styling.
+
+    msg                                              *gitb-config-msg*
+        Type: table with key `fg`
+        Commit message color.
+
+popup                                               *gitb-config-popup*
+    Type: table
+    Default: (see above)
+    Configuration for the floating cache window.
+
+    max_width                                  *gitb-config-max-width*
+        Type: number
+        Default: 80
+        Maximum width of the popup window.
+
+    max_height                                *gitb-config-max-height*
+        Type: number
+        Default: 15
+        Maximum height of the popup window.
+
+    border                                          *gitb-config-border*
+        Type: string
+        Default: "rounded"
+        Border style: "rounded", "single", "double", "shadow", etc.
+
+==============================================================================
+HIGHLIGHTS                                            *gitb-highlights*
+
+The plugin defines the following highlight groups:
+
+GitBlameAuthor~
+    Author name text.
+
+GitBlameDate~
+    Date text.
+
+GitBlameMsg~
+    Commit message text.
+
+You can customize these highlights in your colorscheme: >
+
+  vim.api.nvim_set_hl(0, "GitBlameAuthor", { fg = "#FFA500", bold = true })
+  vim.api.nvim_set_hl(0, "GitBlameDate", { fg = "#00FFFF", italic = true })
+  vim.api.nvim_set_hl(0, "GitBlameMsg", { fg = "#FFFFFF" })
+<
+
+==============================================================================
+FUNCTIONS                                               *gitb-functions*
+
+require("gitb.nvim").showCachePopup()          *gitb-showCachePopup()*
+    Display the git blame cache in a floating window.
+
+require("gitb.nvim").toggleBlame()                *gitb-toggleBlame()*
+    Toggle git blame virtual text on/off.
+
+==============================================================================
+TROUBLESHOOTING                                  *gitb-troubleshooting*
+
+Git blame not showing: ~
+    - Ensure you're in a git repository
+    - Check that git is installed: `:echo executable('git')`
+    - Verify the file has git history
+    - Check if the plugin is enabled: `:GitBlameToggle`
+
+Virtual text showing "Not Committed Yet": ~
+    This is normal for uncommitted changes.
+
+Slow performance: ~
+    The plugin uses caching to minimize git calls. First time visiting a line
+    will be slower, subsequent visits use the cache.
+
+==============================================================================
+EXAMPLES                                                   *gitb-examples*
+
+Minimal configuration: >
+
+  require("gitb.nvim").setup({ enabled = true })
+<
+
+Custom colors: >
+
+  require("gitb.nvim").setup({
+    enabled = true,
+    highlights = {
+      author = { fg = "#FFA500", bold = true },
+      date   = { fg = "#00FFFF", italic = true },
+      msg    = { fg = "#FFFFFF" },
+    },
+  })
+<
+
+With keymap: >
+
+  require("gitb.nvim").setup({ enabled = true })
+  vim.keymap.set('n', '<leader>gb', ':GitBlameToggle<CR>', { desc = 'Toggle git blame' })
+<
+
+==============================================================================
+CHANGELOG                                              *gitb-changelog*
+
+See |CHANGELOG.md| for detailed version history.
+
+==============================================================================
+CONTRIBUTING                                        *gitb-contributing*
+
+Contributions are welcome! Please feel free to submit issues or pull requests
+on GitHub: https://github.com/Damet24/gitb.nvim
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:
