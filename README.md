@@ -15,9 +15,8 @@
 Displays **Git blame** information as virtual text in Neovim, line by line.
 Allows you to customize colors, enable/disable, and show the cache in a floating window.
 
-![screenshot](https://github.com/Damet24/gitb.nvim/screenshots/screenshot_1.png)
-![screenshot](https://github.com/Damet24/gitb.nvim/screenshots/screenshot_2.png)
-![screenshot](https://github.com/Damet24/gitb.nvim/screenshots/screenshot_3.png)
+![screenshot 1](./screenshots/screenshot_1.png)
+![screenshot 3](./screenshots/screenshot_3.png)
 
 ### Features
 

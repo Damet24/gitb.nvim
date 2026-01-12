@@ -3,6 +3,9 @@
 Muestra información de **Git blame** como virtual text en Neovim, línea por línea.
 Permite personalizar colores, habilitar/deshabilitar, y mostrar la cache en una ventana flotante.
 
+![screenshot 1](./screenshots/screenshot_1.png)
+![screenshot 3](./screenshots/screenshot_3.png)
+
 ### Características
 
 - 📊 Visualización de Git blame en la línea actual usando **virtual text**
