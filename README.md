@@ -6,10 +6,6 @@
 
 ---
 
-## [English](#english) | [Español](https://github.com/Damet24/gitb.nvim/README.es.md)
-
----
-
 Displays **Git blame** information as virtual text in Neovim, line by line.
 Allows you to customize colors, enable/disable, and show the cache in a floating window.
 
