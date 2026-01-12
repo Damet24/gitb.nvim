@@ -10,8 +10,6 @@
 
 ---
 
-## English
-
 Displays **Git blame** information as virtual text in Neovim, line by line.
 Allows you to customize colors, enable/disable, and show the cache in a floating window.
 

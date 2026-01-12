@@ -1,5 +1,3 @@
-## Español
-
 Muestra información de **Git blame** como virtual text en Neovim, línea por línea.
 Permite personalizar colores, habilitar/deshabilitar, y mostrar la cache en una ventana flotante.
 
