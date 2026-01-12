@@ -4,32 +4,42 @@
 [![Lua](https://img.shields.io/badge/Made%20with%20Lua-blue.svg)](https://lua.org)
 [![Neovim 0.9+](https://img.shields.io/badge/Neovim-0.9%2B-green.svg)](https://neovim.io)
 
-Muestra información de **Git blame** como virtual text en Neovim, línea por línea.
-Permite personalizar colores, habilitar/deshabilitar, y mostrar la cache en una ventana flotante.
+---
 
-![screenshot](https://github.com/Damet24/gitb.nvim/raw/master/screenshot.png)
-
-## Features
-
-- 📊 Visualización de Git blame en la línea actual usando **virtual text**
-- 💾 Cache local por línea para minimizar llamadas a Git
-- 🪟 Popup flotante con toda la cache de blame
-- 🎨 Colores y estilos configurables
-- 🔄 Auto-aplica highlights al cambiar colorscheme
-- ⚡ Toggle fácil con comando `:GitBlameToggle`
-- ⏱️ Lazy loading para startup rápido
-- 🩺 Health check con `:checkhealth gitb`
-
-## Requirements
-
-- Neovim >= 0.9.0
-- Git instalado y disponible en PATH
+## [English](#english) | [Español](https://github.com/Damet24/gitb.nvim/README.es.md)
 
 ---
 
-## Instalación
+## English
 
-Con tu gestor de plugins favorito:
+Displays **Git blame** information as virtual text in Neovim, line by line.
+Allows you to customize colors, enable/disable, and show the cache in a floating window.
+
+![screenshot](https://github.com/Damet24/gitb.nvim/screenshots/screenshot_1.png)
+![screenshot](https://github.com/Damet24/gitb.nvim/screenshots/screenshot_2.png)
+![screenshot](https://github.com/Damet24/gitb.nvim/screenshots/screenshot_3.png)
+
+### Features
+
+- 📊 Git blame visualization on current line using **virtual text**
+- 💾 Local cache per line to minimize Git calls
+- 🪟 Floating popup with full blame cache
+- 🎨 Configurable colors and styles
+- 🔄 Auto-applies highlights when changing colorscheme
+- ⚡ Easy toggle with command `:GitBlameToggle`
+- ⏱️ Lazy loading for fast startup
+- 🩺 Health check with `:checkhealth gitb`
+
+### Requirements
+
+- Neovim >= 0.9.0
+- Git installed and available in PATH
+
+---
+
+### Installation
+
+With your favorite plugin manager:
 
 **[lazy.nvim]**
 
@@ -55,15 +65,15 @@ use {
 
 ---
 
-## Uso
+### Usage
 
-### Comando para alternar Blame
+#### Toggle Blame Command
 
 ```vim
 :GitBlameToggle
 ```
 
-### Mostrar cache en ventana flotante
+#### Show cache in floating window
 
 ```lua
 require("gitb_nvim").showCachePopup()
@@ -71,13 +81,13 @@ require("gitb_nvim").showCachePopup()
 
 ---
 
-## Configuración
+### Configuration
 
-Todas las opciones se pasan a través de un **único objeto `setup()`**:
+All options are passed through a **single `setup()` object**:
 
 ```lua
 require("gitb_nvim").setup({
-  enabled = true, -- iniciar activado
+  enabled = true, -- start enabled
 
   highlights = {
     author = { fg = "#FF0000", bold = true },
@@ -86,28 +96,28 @@ require("gitb_nvim").setup({
   },
 
   popup = {
-    max_width  = 100,      -- ancho máximo de la ventana flotante
-    max_height = 20,       -- alto máximo de la ventana flotante
-    border     = "double", -- estilo del borde: "rounded", "single", "double", etc.
+    max_width  = 100,      -- maximum width of floating window
+    max_height = 20,       -- maximum height of floating window
+    border     = "double", -- border style: "rounded", "single", "double", etc.
   },
 })
 ```
 
-### Opciones de configuración
+#### Configuration Options
 
-| Opción              | Tipo    | Default                                     | Descripción                                                              |
-| ------------------- | ------- | ------------------------------------------- | ------------------------------------------------------------------------ |
-| `enabled`           | boolean | `false`                                     | Iniciar el plugin activado                                               |
-| `highlights.author` | table   | `{ fg = colors.Comment, bold = true }`      | Color y estilo del autor                                                 |
-| `highlights.date`   | table   | `{ fg = colors.Identifier, italic = true }` | Color y estilo de la fecha                                               |
-| `highlights.msg`    | table   | `{ fg = colors.Normal }`                    | Color del mensaje                                                        |
-| `popup.max_width`   | number  | `80`                                        | Ancho máximo del popup                                                   |
-| `popup.max_height`  | number  | `15`                                        | Alto máximo del popup                                                    |
-| `popup.border`      | string  | `"rounded"`                                 | Estilo del borde (`"rounded"`, `"single"`, `"double"`, `"shadow"`, etc.) |
+| Option              | Type    | Default                                     | Description                                                          |
+| ------------------- | ------- | ------------------------------------------- | -------------------------------------------------------------------- |
+| `enabled`           | boolean | `false`                                     | Start the plugin enabled                                             |
+| `highlights.author` | table   | `{ fg = colors.Comment, bold = true }`      | Color and style of the author                                        |
+| `highlights.date`   | table   | `{ fg = colors.Identifier, italic = true }` | Color and style of the date                                          |
+| `highlights.msg`    | table   | `{ fg = colors.Normal }`                    | Color of the message                                                 |
+| `popup.max_width`   | number  | `80`                                        | Maximum width of the popup                                           |
+| `popup.max_height`  | number  | `15`                                        | Maximum height of the popup                                          |
+| `popup.border`      | string  | `"rounded"`                                 | Border style (`"rounded"`, `"single"`, `"double"`, `"shadow"`, etc.) |
 
-### Highlights personalizados
+#### Custom Highlights
 
-Puedes personalizar los highlights directamente: >
+You can customize highlights directly: >
 
 vim.api.nvim_set_hl(0, "GitBlameAuthor", { fg = "#FFA500", bold = true })
 vim.api.nvim_set_hl(0, "GitBlameDate", { fg = "#00FFFF", italic = true })
@@ -116,7 +126,7 @@ vim.api.nvim_set_hl(0, "GitBlameMsg", { fg = "#FFFFFF" })
 
 ---
 
-## Ejemplo completo
+### Full Example
 
 ```lua
 require("gitb_nvim").setup({
@@ -135,16 +145,5 @@ require("gitb_nvim").setup({
   },
 })
 ```
-
----
-
-## Características
-
-- Visualización de Git blame en la línea actual usando **virtual text**.
-- Cache local por línea para minimizar llamadas a Git.
-- Popup flotante con toda la cache de blame.
-- Colores y estilos configurables.
-- Auto-aplica highlights al cambiar colorscheme.
-- Toggle fácil con comando `:GitBlameToggle`.
 
 ---
